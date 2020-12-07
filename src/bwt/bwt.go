@@ -28,9 +28,8 @@ func NewBWTS() (*BWTS, error) {
 	return this, nil
 }
 
-// Вперед применяет функцию к src и записывает результат
-// в пункт назначения. Возвращает количество прочитанных байтов, количество байтов.
-// written and possibly an error.
+// Forward применяет функцию к src и записывает результат
+// в dst. Возвращает количество прочитанных байтов, количество байтов.
 func (this *BWTS) Forward(src, dst []byte) (uint, uint, error) {
 	if len(src) == 0 {
 		return 0, 0, nil
@@ -84,7 +83,6 @@ func (this *BWTS) Forward(src, dst []byte) (uint, uint, error) {
 		}
 		refRank := this.moveLyndonWordHead(sa, isa, src, count32, idxMin, i-idxMin, min)
 		for j := i - 1; j > idxMin; j-- {
-			// перебираем новое слово Lyndon от конца до начала
 			testRank := isa[j]
 			startRank := testRank
 			for testRank < count32-1 {
@@ -151,8 +149,7 @@ func (this *BWTS) moveLyndonWordHead(sa, isa []int32, data []byte, count, start,
 }
 
 // Inverse применяет обратную функцию к src и записывает результат
-// в пункт назначения. Возвращает количество прочитанных байтов, количество байтов.
-// записано и возможно ошибка.
+// в dst. Возвращает количество прочитанных байтов, количество байтов.
 func (this *BWTS) Inverse(src, dst []byte) (uint, uint, error) {
 	if len(src) == 0 {
 		return 0, 0, nil

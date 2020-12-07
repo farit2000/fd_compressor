@@ -18,7 +18,7 @@ func NewWriter(out io.Writer) *Writer {
 	return NewWriterOptions(out, nil)
 }
 
-//  Читатель сможет только правильно декодировать поток
+// Writer сможет только правильно декодировать поток
 // создается Writer, если одни и те же параметры используются как в Reader, так и Writer.
 func NewWriterOptions(out io.Writer, o *Options) *Writer {
 	o = checkOptions(o)
